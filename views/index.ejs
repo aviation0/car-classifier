@@ -1,0 +1,61 @@
+<% include partials/header %>
+
+<button class="tablink" onclick="openPage('Home', this, 'orange')" id="defaultOpen">Vehicle Classifier</button>
+<button class="tablink" onclick="openPage('About', this, 'orange')">Past Reports</button>
+
+<div id="Home" class="tabcontent">
+  <div class="row">
+    <div id="table-container-div" class="col-md-6 col-md-offset-3">
+      <h1>Xml File</h1>
+      <form id="new-file-form" action="/new" method="POST" enctype="multipart/form-data">
+        <div class="upload-btn-wrapper">
+          <button id="picker-button" class="btn">Pick XML</button>
+          <input type="file" id="file" name="file" accept="text/xml" required>
+        </div>
+        <span>
+          <button  class="submit">Upload</button>    
+        </span>
+      </form>
+      <table id="vehicle-table">
+        
+      </table>
+      <br>
+
+      <button id="xml-button" class="submit-xml" style="display: none">View XML</button>
+      <div id="xml-modal" class="modal">
+          <div class="modal-content">
+              <span id="close">&times;</span>
+              <p id="xmpp"><strong>Original XML</strong>
+                
+              </p>
+          </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="About" class="tabcontent">
+  <div id="table-container-div" class="col-md-6 col-md-offset-3">
+    <h1 id="history-heading">History</h1>
+    <ul id="report-list">
+      <% reports.forEach(function(report){ %>
+
+      <li class="list-item-report">
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <small class="text-muted"><%=report.timestamp%></small>
+            <h4 class="mb-1"><%=report.originalname%></h4>
+          </div>
+          <p class="mb-1"><%=report.types.BigWheel +report.types.Motorcycle +report.types.Bicycle +report.types.HangGlider +report.types.Car%> Vehicles</p>
+          <small class="text-muted"><%=report._id%></small>
+        </a>
+      </li>
+
+      <br>
+      <% }); %>
+    </ul>
+  </div>
+</div>
+
+<% include partials/footer %>
