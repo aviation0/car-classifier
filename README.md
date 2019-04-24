@@ -25,3 +25,5 @@ npm run test
 
 ### Testing Library
 **Jest** and **Supertest**
+
+#### XML data test files can be found under sub-directory _testFiles_
